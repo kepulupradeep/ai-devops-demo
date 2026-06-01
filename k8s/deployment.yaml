@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ai-demo
+  template:
+    metadata:
+      labels:
+        app: ai-demo
+    spec:
+      containers:
+        - name: app
+          image: ai-demo:latest
+          ports:
+            - containerPort: "5000"   # ❌ should be int
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
